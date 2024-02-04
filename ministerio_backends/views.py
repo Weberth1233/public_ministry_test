@@ -43,29 +43,30 @@ def client_create(request):
 @api_view(['POST'])
 def project_create(request):
     if request.method == 'POST':
+        #Armazenando ids passados 
+        users_id = request.data.get("users", [])
+        #Antes vou verificar se os id passados na request existem para não adicionar errado
+        for user_id in request.data.get("users", []):
+            try:
+                #Verificando se o id existe mesmo, caso não exista ele vai entrar no except
+                User.objects.get(pk=int(user_id))
+            except (User.DoesNotExist, ValueError):
+                return Response({"error": f"Usuário com ID {user_id} não existe ou o ID não é válido."}, status=status.HTTP_400_BAD_REQUEST)
         # Criar o serializador com os dados do projeto
         serializer = ProjectSerializer(data=request.data)
-
         # Verificar a validade do serializador
         if serializer.is_valid():
             # Salvar o projeto
             new_project = serializer.save()
-
             # Adicionar usuários existentes ao projeto
-            for user_id in request.data.get("users", []):
-                try:
-                    user_exists = User.objects.get(pk=int(user_id))
-                    new_project.users.add(user_exists)
-                except (User.DoesNotExist, ValueError):
-                    return Response({"error": f"Usuário com ID {user_id} não existe ou o ID não é válido."}, status=status.HTTP_400_BAD_REQUEST)
-
+            for user_id in users_id:
+                new_project.users.add(User.objects.get(pk=int(user_id)))
             # Atualizar o serializador para incluir os usuários
             serializer_with_users = ProjectSerializer(new_project)
-            
             return Response(serializer_with_users.data, status=status.HTTP_201_CREATED)
         else:
+            #Retornando a resposta de erro se qualquer problema na request o ocorre, pois o serializer está validando os dados passados
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
     return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 @api_view(['GET'])
