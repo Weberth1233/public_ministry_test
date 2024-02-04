@@ -49,18 +49,18 @@ def project_create(request):
         # Verificar a validade do serializador
         if serializer.is_valid():
             # Salvar o projeto
-            novo_projeto = serializer.save()
+            new_project = serializer.save()
 
             # Adicionar usuários existentes ao projeto
-            for usuario_id in request.data.get("users", []):
+            for user_id in request.data.get("users", []):
                 try:
-                    usuario_existente = User.objects.get(pk=int(usuario_id))
-                    novo_projeto.users.add(usuario_existente)
+                    user_exists = User.objects.get(pk=int(user_id))
+                    new_project.users.add(user_exists)
                 except (User.DoesNotExist, ValueError):
-                    return Response({"error": f"Usuário com ID {usuario_id} não existe ou o ID não é válido."}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({"error": f"Usuário com ID {user_id} não existe ou o ID não é válido."}, status=status.HTTP_400_BAD_REQUEST)
 
             # Atualizar o serializador para incluir os usuários
-            serializer_with_users = ProjectSerializer(novo_projeto)
+            serializer_with_users = ProjectSerializer(new_project)
             
             return Response(serializer_with_users.data, status=status.HTTP_201_CREATED)
         else:
