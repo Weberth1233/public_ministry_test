@@ -5,7 +5,7 @@ class User(models.Model):
     name = models.CharField(max_length = 255, unique= True)
     phone = models.CharField(max_length = 11)
     email =models.EmailField()
-    "Pegando data do sistema ao fazer o cadastro do usuário"
+    #Pegando data do sistema ao fazer o cadastro do usuário
     date_added = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):

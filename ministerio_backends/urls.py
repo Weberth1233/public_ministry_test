@@ -15,4 +15,6 @@ urlpatterns = [
     path('projects/', views.project_list, name="project_list"),
     #Rota para cadastrar projetos
     path('createproject/', views.project_create, name="create_project"),
+    #Rota para buscar informações do projeto pelo id
+    path('project/<int:pk>/', views.project_by_id, name="project_by_id"),
 ]

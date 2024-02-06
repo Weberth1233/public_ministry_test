@@ -71,7 +71,14 @@ def project_create(request):
 
 @api_view(['GET'])
 def client_by_id(request, pk):
-    #Caso o usuário passe um objeto não encontrado, caso seja um id existente retorna o objeto caso contrario retornar erro 404.
+    #Caso o usuário passe um objeto não encontrado, caso seja um id existente retorna o objeto caso, contrario retornar erro 404.
     client = get_object_or_404(User, id=pk)
     serializer = UserSerializer(client)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def project_by_id(request, pk):
+    #Caso o projeto passe um objeto não encontrado, caso seja um id existente retorna o objeto, caso contrario retornar erro 404.
+    project = get_object_or_404(Project, id=pk)
+    serializer = ProjectSerializer(project)
     return Response(serializer.data)
