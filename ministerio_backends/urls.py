@@ -9,6 +9,7 @@ urlpatterns = [
     path('createuser/', views.client_create, name='create_client'),
     #Rota para consultar usuario por id
     path('user/<int:pk>/', views.client_by_id, name='user_by_id'),
+    path('userprojects/<int:pk>/', views.get_projects_by_user, name='get_projects_by_user'),
 
     #Rotas de projetos
     #Rota para listar todos os projetos cadastrados
