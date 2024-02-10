@@ -107,7 +107,7 @@ def get_projects_by_user(request, pk):
             user = User.objects.get(pk=pk)
             projects = user.project.all()  # Obtém todos os projetos relacionados a este usuário
             
-            # Serializa os projetos em um formato adequado (por exemplo, lista de dicionários)
+            # Serializa os projetos em um formato adequado 
             serialized_projects = []
             for project in projects:
                 # Serializa os usuários associados a cada projeto
@@ -126,7 +126,7 @@ def get_projects_by_user(request, pk):
                     'users': serialized_users
                 })
             
-            return Response(serialized_projects, status=status.HTTP_200_OK)  # Retorna a lista de projetos em formato JSON
+            return Response(serialized_projects, status=status.HTTP_200_OK) 
         except User.DoesNotExist:
             return Response({'error': 'Usuário não encontrado'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
