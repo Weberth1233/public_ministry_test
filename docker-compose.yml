@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  backend:
+    build: 
+      context: ./ministerio_backend
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./ministerio_backend:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - my_network
+
+  frontend:
+    build: 
+      context: ./ministerio_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+
+networks:
+  my_network:
