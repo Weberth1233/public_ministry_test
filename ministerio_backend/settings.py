@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Adicione o IP específico à lista ALLOWED_HOSTS
-ALLOWED_HOSTS = ['192.168.0.108','127.0.0.1', 'localhost','192.168.100.24']
+ALLOWED_HOSTS = ['192.168.0.108','127.0.0.1', 'localhost']
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 CORS_ALLOW_ALL_ORIGINS = True
