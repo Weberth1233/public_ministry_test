@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ministerio_frontend/components/elevation_button_component.dart';
+import 'package:ministerio_frontend/components/text_field_component.dart';
 import 'package:ministerio_frontend/viewmodel/project_view_model.dart';
 import '../../viewmodel/client_view_model.dart';
 
@@ -22,22 +24,19 @@ class CreateProjecView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextField(
-              controller: controllerProject.nameController,
-              decoration: const InputDecoration(
-                labelText: "Digite o nome do projeto",
-                border: OutlineInputBorder(),
-              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFielComponent(
+                  textEditingController: controllerProject.nameController,
+                  label: "Digite o nome do projeto"),
             ),
-            const SizedBox(height: 10),
-            TextField(
-              controller: controllerProject.descriptionController,
-              decoration: const InputDecoration(
-                labelText: "Digite a descrição do projeto",
-                border: OutlineInputBorder(),
-              ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFielComponent(
+                  textEditingController:
+                      controllerProject.descriptionController,
+                  label: "Digite a descrição do projeto"),
             ),
-            const SizedBox(height: 10),
             const Text(
               "Membros do projeto",
               style: TextStyle(fontWeight: FontWeight.w500),
@@ -77,21 +76,12 @@ class CreateProjecView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    controllerProject.registerProject();
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.purple),
-                  ),
-                  child: const Text(
-                    "Cadastrar",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
+                  height: 50,
+                  child: ElevationButtonComponent(
+                      action: () {
+                        controllerProject.registerProject();
+                      },
+                      label: 'Cadastrar')),
             ),
           ],
         ),

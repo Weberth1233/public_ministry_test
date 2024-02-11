@@ -57,7 +57,7 @@ class _CreateClienteViewState extends State<CreateClienteView> {
                       action: () {
                         controller.registerClient();
                       },
-                      label: 'Cadastro'))
+                      label: 'Cadastrar'))
             ],
           ),
         ),
