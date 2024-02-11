@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:ministerio_frontend/model/project_model.dart';
 import 'package:ministerio_frontend/utils/paths/paths.dart';
 import 'package:ministerio_frontend/model/client_model.dart';
-import 'package:ministerio_frontend/repositories/base_repository.dart';
 import '../core/failures/server_failures.dart';
 import '../core/routes/app_routes.dart';
+import '../repositories/client_repository_impl.dart';
 
 class ClientProjectsViewModel extends GetxController {
   RxBool isLoading = false.obs;
-  final BaseRepository baseRepository;
+  final ClientRepositoryImpl baseRepository;
   // Criar uma lista para armazenar os ids dos usuários dos projetos
   RxList<ProjectModel> projectsUser = <ProjectModel>[].obs;
   //Rodar for e pega os projetos onde os id dos usuários e apresentar por meio de um modal

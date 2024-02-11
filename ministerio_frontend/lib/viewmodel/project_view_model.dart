@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ministerio_frontend/model/client_model.dart';
+import 'package:ministerio_frontend/repositories/project_repository_impl.dart';
 import 'package:ministerio_frontend/utils/paths/paths.dart';
-import 'package:ministerio_frontend/repositories/base_repository.dart';
 import '../core/failures/server_failures.dart';
 import '../model/project_model.dart';
 
 class ProjectViewModel extends GetxController {
   RxBool isLoading = false.obs;
-  final BaseRepository baseRepository;
+  final ProjectRepositoryImpl baseRepository;
   RxList projectList = <ProjectModel>[].obs;
   late final TextEditingController nameController;
   late final TextEditingController descriptionController;
