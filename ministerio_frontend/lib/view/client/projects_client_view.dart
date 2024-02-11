@@ -13,12 +13,13 @@ class ProjectsClientView extends StatefulWidget {
 class _ProjectsClientViewState extends State<ProjectsClientView> {
   // final controller = Get.find<ClientViewModel>();
   final controller = Get.find<ClientProjectsViewModel>();
+  String name = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meus Projetos'),
+        title: Text('Projetos - $name'),
         centerTitle: true,
       ),
       body: Obx(

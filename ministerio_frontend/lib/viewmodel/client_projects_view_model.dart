@@ -32,7 +32,7 @@ class ClientProjectsViewModel extends GetxController {
           projectsUser.add(value[i]);
         }
         if (projectsUser.isNotEmpty) {
-          Get.toNamed(Routes.projectsClient);
+          Get.toNamed(Routes.projectsClient, arguments: clientModel.name);
         } else {
           Get.defaultDialog(
               title: "Atenção!",

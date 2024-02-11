@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:ministerio_frontend/model/client_model.dart';
-import 'package:ministerio_frontend/repositories/base_repository.dart';
 import 'package:ministerio_frontend/view/client/create_client_view.dart';
 import 'package:ministerio_frontend/view/client/home_view.dart';
 import 'package:ministerio_frontend/view/client/projects_client_view.dart';
@@ -9,7 +7,6 @@ import 'package:ministerio_frontend/view/project/project_view.dart';
 import 'package:ministerio_frontend/viewmodel/client_projects_view_model.dart';
 import 'package:ministerio_frontend/viewmodel/client_view_model.dart';
 import 'package:ministerio_frontend/viewmodel/project_view_model.dart';
-
 import '../../repositories/client_repository_impl.dart';
 import '../../repositories/project_repository_impl.dart';
 
@@ -46,6 +43,7 @@ class AppRoutes {
         GetPage(
           name: Routes.projectsClient,
           page: () => const ProjectsClientView(),
+          arguments: String,
           binding: BindingsBuilder(() {
             Get.lazyPut<ClientProjectsViewModel>(
                 () => ClientProjectsViewModel(ClientRepositoryImpl()));

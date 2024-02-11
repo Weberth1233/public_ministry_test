@@ -22,6 +22,9 @@ class BaseRepository {
         //Aplicando correção de caracteres especias com o utf-8
         var responseBody = utf8.decode(response.bodyBytes);
         objects = fromJson(responseBody);
+        // Ordenando a lista por ordem alfabética
+        objects.sort((a, b) => a.name.compareTo(b.name));
+
         return right(objects);
       } else if (response.statusCode == 400) {
         return left(ServerFailures.notFound);

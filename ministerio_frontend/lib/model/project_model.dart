@@ -11,17 +11,15 @@ String projectModelListToJson(List<ProjectModel> data) =>
 String projectModelToJson(Map<String, dynamic> data) => json.encode(data);
 
 class ProjectModel extends BaseModel {
-  final int? id;
-  final String name;
   final String description;
   final List<ClientModel> users;
 
   ProjectModel({
-    this.id,
-    required this.name,
+    required String name,
     required this.description,
     required this.users,
-  });
+    int? id,
+  }) : super(id: id, name: name);
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     List<ClientModel> userList = [];

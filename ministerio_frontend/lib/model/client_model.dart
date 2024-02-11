@@ -11,13 +11,15 @@ String userModelListToJson(List<ClientModel> data) =>
 String userModelToJson(Map<String, dynamic> data) => json.encode(data);
 
 class ClientModel extends BaseModel {
-  int? id;
-  String name;
   String phone;
   String email;
 
-  ClientModel(
-      {required this.name, required this.phone, required this.email, this.id});
+  ClientModel({
+    required String name,
+    required this.phone,
+    required this.email,
+    int? id,
+  }) : super(id: id, name: name);
 
   factory ClientModel.fromJson(Map<String, dynamic> json) => ClientModel(
       id: json["id"],

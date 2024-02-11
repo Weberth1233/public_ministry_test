@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ministerio_frontend/model/client_model.dart';
-
+import 'package:ministerio_frontend/components/elevation_button_component.dart';
+import '../../components/text_field_component.dart';
 import '../../viewmodel/client_view_model.dart';
 
 class CreateClienteView extends StatefulWidget {
@@ -20,54 +20,44 @@ class _CreateClienteViewState extends State<CreateClienteView> {
         title: const Text('Cadastrar usuários'),
         centerTitle: true,
       ),
-      body: Container(
+      body: SizedBox(
         child: Padding(
           padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              TextField(
-                  controller: controller.nameController,
-                  decoration: const InputDecoration(
-                      labelText: "Digite o nome do usuário",
-                      border: OutlineInputBorder())),
-              const SizedBox(
-                height: 10,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFielComponent(
+                  label: 'Digite o nome do usuário',
+                  textEditingController: controller.nameController,
+                ),
               ),
-              TextField(
-                  controller: controller.emailController,
-                  decoration: const InputDecoration(
-                      labelText: "Digite o email",
-                      border: OutlineInputBorder())),
-              const SizedBox(
-                height: 10,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFielComponent(
+                  label: 'Digite o email',
+                  textEditingController: controller.emailController,
+                ),
               ),
-              TextField(
-                  controller: controller.phoneController,
-                  decoration: const InputDecoration(
-                      labelText: "Digite telefone",
-                      border: OutlineInputBorder())),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFielComponent(
+                  label: 'Digite seu telefone',
+                  textEditingController: controller.phoneController,
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
               SizedBox(
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    print(controller.nameController.text);
-                    controller.registerClient();
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.purple),
-                  ),
-                  child: const Text(
-                    "Cadastrar",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              )
+                  height: 50,
+                  child: ElevationButtonComponent(
+                      action: () {
+                        controller.registerClient();
+                      },
+                      label: 'Cadastro'))
             ],
           ),
         ),
